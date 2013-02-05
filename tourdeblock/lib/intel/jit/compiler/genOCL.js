@@ -51,7 +51,7 @@ RiverTrail.compiler.codeGen = (function() {
     const verboseDebug = false;
     const checkBounds = true;
     const checkall = false;
-    const conditionalInline = true;
+    const conditionalInline = false;
     const verboseErrors = true;
     const parser = Narcissus.parser;
     const definitions = Narcissus.definitions;
@@ -261,7 +261,8 @@ RiverTrail.compiler.codeGen = (function() {
             // the first argument is id that this call is responsible for.
             if (indexType.isObjectType("Array")) { //(formalsType === "int*") {
                 dimSizes = indexType.getOpenCLShape();
-                s = s + indexType.getOpenCLAddressSpace() +" const "+ RiverTrail.Helper.stripToBaseType(indexType.OpenCLType) + " " +
+                var idxTypeStr = RiverTrail.Helper.stripToBaseType(indexType.OpenCLType);
+                s = s + indexType.getOpenCLAddressSpace() +" const "+ idxTypeStr + " " +
                     indexName+"["+ dimSizes.toString() +"] = "; 
                 // Deal with array indices.
                 // SAH: id may _NEVER_ be changed in this process as it is required to assign the result!
@@ -273,7 +274,7 @@ RiverTrail.compiler.codeGen = (function() {
                     if (i > 0) {
                         s = s + ", ";
                     }
-                    s = s + "_id_" + i;
+                    s = s + "(" + idxTypeStr + ") _id_" + i;
                 }
                 s = s + "};";
             } else {            
@@ -1994,7 +1995,7 @@ RiverTrail.compiler.codeGen = (function() {
                 if (ast.typeInfo.isNumberType()) {
                     // we have a scalar number, so we just emit the
                     // conversion code
-                    s = s + "(int)" + oclExpression(ast.children[0]); 
+                    s = s + "((int)" + oclExpression(ast.children[0]) + ")"; 
                 } else {
                     // this is some form of array or vector. We do not
                     // have allocation of local temps, yet, so fail
