@@ -1,106 +1,85 @@
-﻿<html>
-
+<html>
+  <head>
+    <meta charset="utf-8" />
     <!--
 
-    Tour de Block
+        Tour de Block
         Designed by Indigo Kelleigh, Developed by Vance Feldman, Original c++ engine by Ben Kenwright
 
-    Copyright (c) 2012, Intel Corporation
-    All rights reserved.
- 
-    Redistribution and use in source and binary forms, with or without
-    modification, are permitted provided that the following conditions are met:
- 
-    - Redistributions of source code must retain the above copyright notice,
-      this list of conditions and the following disclaimer.
-    - Redistributions in binary form must reproduce the above copyright notice,
-      this list of conditions and the following disclaimer in the documentation
-      and/or other materials provided with the distribution.
- 
-    THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-    AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
-    IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
-    ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
-    LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
-    CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
-    SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
-    INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
-    CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
-    ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
-    THE POSSIBILITY OF SUCH DAMAGE.
-    --->
-
-<head>
+        Copyright (c) 2012, Intel Corporation
+        All rights reserved.
+        
+        Redistribution and use in source and binary forms, with or without
+        modification, are permitted provided that the following conditions are met:
+        
+        - Redistributions of source code must retain the above copyright notice,
+        this list of conditions and the following disclaimer.
+        - Redistributions in binary form must reproduce the above copyright notice,
+        this list of conditions and the following disclaimer in the documentation
+        and/or other materials provided with the distribution.
+        
+        THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+        AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+        IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+        ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+        LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+        CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+        SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+        INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+        CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+        ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
+        THE POSSIBILITY OF SUCH DAMAGE.
+      --->
     <title>Tour De Block: River Trail Game</title>
 
     <meta property=”og:site_name” content="Tour De Block: River Trail Game. Data Parallel Gaming, in Javascript!"/> 
-</head> 
-    <body onload="onLoaded();"> 
-   
-   <!-- font -->
-    <link href="supplimental/CooperBlack/stylesheet.css" rel="stylesheet" type="text/css">   
-
-
-
-
-   <!-- COM -->
+  </head> 
+  <body onload="onLoaded();"> 
+    
+    <!-- COM -->
     <script type="text/javascript" src="com/Util.js"></script>
     <script type="application/javascript" src="com/TextureBuilder.js"></script>
     <script type="text/javascript" src="com/UIElement.js"></script>
     <link href="com/Designer.css" rel="stylesheet" type="text/css">   
-   <!-- <script type="application/javascript" src="com/FPSCounter.js"></script>-->
 
-   <!-- unique -->
-   
+    <!-- unique -->
     <script type="text/javascript" src="game/CamControl.js"></script>
     <script type="text/javascript" src="game/GameLevelLoader.js"></script>
     <script type="text/javascript" src="game/Interface.js"></script>
     <script type="text/javascript" src="game/LevelManagement.js"></script>
     
-    
-     <!-- physics cubes -->
+    <!-- physics cubes -->
     <script type="application/javascript" src="game/engine/CubeCollision.js"></script>
-     <script type="application/javascript" src="game/engine/CubeCollisionOCL.js"></script>
+    <script type="application/javascript" src="game/engine/CubeCollisionOCL.js"></script>
     <script type="application/javascript" src="game/engine/Cube.js"></script>
     <script type="application/javascript" src="game/engine/VecMath.js"></script>
     <script type="application/javascript" src="game/engine/CubeMainCycle.js"></script>
     <script type="application/javascript" src="game/engine/ApplyImpulsesOCL.js"></script>
 
-    
-   <!-- other libraries -->
+    <!-- other libraries -->
     <script type="application/javascript" src="lib/three/build/Three.js"></script>
-    <script type="text/javascript" src="lib/jQuery.js"></script>
+    <script type="text/javascript" src="lib/jquery.js"></script>
     <script type="text/javascript" src="lib/RequestAnimationFrame.js"></script>
     <script type="text/javascript" src="lib/JSTweener.js"></script>
 
-    <script type="text/javascript" src="lib/intel/ParallelArray.js"></script>
-    <script type="application/javascript" src="lib/intel/jit/narcissus/jsdefs.js"></script>
-    <script type="application/javascript" src="lib/intel/jit/narcissus/jslex.js"></script>
-    <script type="application/javascript" src="lib/intel/jit/narcissus/jsparse.js"></script>
-    <script type="application/javascript" src="lib/intel/jit/narcissus/jsdecomp.js"></script>
-    <script type="application/javascript" src="lib/intel/jit/compiler/definitions.js"></script>
-    <script type="application/javascript" src="lib/intel/jit/compiler/helper.js"></script>
-    <script type="application/javascript" src="lib/intel/jit/compiler/driver.js"></script>
-    <script type="application/javascript" src="lib/intel/jit/compiler/dotviz.js"></script>
-    <script type="application/javascript" src="lib/intel/jit/compiler/typeinference.js"></script>
-    <script type="application/javascript" src="lib/intel/jit/compiler/rangeanalysis.js"></script>
-	<script type="application/javascript" src="lib/intel/jit/compiler/inferblockflow.js"></script>
-	<script type="application/javascript" src="lib/intel/jit/compiler/infermem.js"></script>
-    <script type="application/javascript" src="lib/intel/jit/compiler/genOCL.js"></script>
-    <script type="application/javascript" src="lib/intel/jit/compiler/runOCL.js"></script>
-
-
-    <!-- supplimental (not required for game) -->
-    <script type="text/javascript" src="supplemental/Automator.js"></script>
-
-    <script src="http://static.ak.fbcdn.net/connect.php/js/FB.Share" type="text/javascript"></script>
-
-
-   
+    <script type="application/javascript" src="../RiverTrail/jslib/jit/compiler/runtimes.js"></script>
+    <script type="text/javascript" src="../RiverTrail/jslib/ParallelArray.js"></script>
+    <script type="application/javascript" src="../RiverTrail/jslib/jit/narcissus/jsdefs.js"></script>
+    <script type="application/javascript" src="../RiverTrail/jslib/jit/narcissus/jslex.js"></script>
+    <script type="application/javascript" src="../RiverTrail/jslib/jit/narcissus/jsparse.js"></script>
+    <script type="application/javascript" src="../RiverTrail/jslib/jit/narcissus/jsdecomp.js"></script>
+    <script type="application/javascript" src="../RiverTrail/jslib/jit/compiler/definitions.js"></script>
+    <script type="application/javascript" src="../RiverTrail/jslib/jit/compiler/helper.js"></script>
+    <script type="application/javascript" src="../RiverTrail/jslib/jit/compiler/driver.js"></script>
+    <script type="application/javascript" src="../RiverTrail/jslib/jit/compiler/dotviz.js"></script>
+    <script type="application/javascript" src="../RiverTrail/jslib/jit/compiler/typeinference.js"></script>
+    <script type="application/javascript" src="../RiverTrail/jslib/jit/compiler/rangeanalysis.js"></script>
+    <script type="application/javascript" src="../RiverTrail/jslib/jit/compiler/inferblockflow.js"></script>
+    <script type="application/javascript" src="../RiverTrail/jslib/jit/compiler/infermem.js"></script>
+    <script type="application/javascript" src="../RiverTrail/jslib/jit/compiler/genOCL.js"></script>
+    <script type="application/javascript" src="../RiverTrail/jslib/jit/compiler/runOCL.js"></script>
 
     <script type="text/javascript">
-
-
         
         var isChrome = false;
 
@@ -218,8 +197,6 @@
 
         // FIRST RUN
         function onLoaded() {
-            //testFF("../");
-            testRT("../");
 
             isFiring = false;
             time = 0;
@@ -544,30 +521,6 @@
             cameraControl.moveDown = false;
         }
 
-        function testFF(url) {
-            if (parseInt(navigator.userAgent.toString().toLowerCase().split("firefox/")[1].split(".")[0]) <= 13) {
-                top.location.href = url;
-            }
-        }
-
-        function testRT(url) {            
-            var openCLContext;
-            var dpoInterface;
-            var dpoPlatform;
-
-            try {
-                dpoInterface = new DPOInterface();
-                dpoPlatform = dpoInterface.getPlatform();
-                openCLContext = dpoPlatform.createContext();
-            } catch (e) {
-                HAS_OPENCL_CONTEXT = false;
-            }
-
-        }
-
-
-
-
         function initializeInterface() {
 
             if (DEBUG == true)
@@ -604,8 +557,6 @@
 
             // Init Home Screen
             setState(States.HOME_SCREEN);
-
-            //initAutomator( );
 
             $.getJSON('../_assets/levelschema.json', { cache: Math.round(Math.random() * 1000) }, function (data) {
                 // Store level data
@@ -1398,4 +1349,3 @@
         <div id="automator-prompt" style="z-index:201;position:fixed;display:inherit;width:500px;top:110px;display:none;font-size:18px;font-weight:bold;"></div>
  </body>
 </html>
-
