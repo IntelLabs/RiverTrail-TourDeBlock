@@ -573,9 +573,6 @@
                 HighScores = data.scores;
             });
 
-            $.getJSON('../Redirect.aspx?exec=gettoken', { cache: Math.round(Math.random() * 10000) }, function (data) {
-                redirect = data.token;
-            });
 
             initializeParticles();
 
